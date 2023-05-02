@@ -6,6 +6,7 @@ import com.example.testtest.practice01.entity.Board;
 import com.example.testtest.practice01.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -16,10 +17,8 @@ import java.util.List;
 public class BoardController {
     private final BoardService boardService;
 
-    /**
-     * 리스트 보여주기
-     */
-    @RequestMapping("/list")
+    // 전체 목록 조회
+    @GetMapping("/list")
     public String showList(Model model) {
 
         List<BoardListRequestDTO> list = boardService.findAll();
@@ -30,21 +29,22 @@ public class BoardController {
 
     // 글 추가 페이지 보여주는 기능
     @RequestMapping("/write")
-    public String writePage(){
+    public String writePage() {
 
         return "/write";
     }
 
     // 새로운 게시물 정보를 받아 메인에 새로운 게시물을 보여주는 기능
     @RequestMapping
-    public String save(Model model, BoardWriteRequestDTO dto){
+    public String save(Model model, BoardWriteRequestDTO dto) {
         boardService.save(dto);
-//        model.addAttribute("blist",)
+        List<BoardListRequestDTO> all = boardService.findAll();
+        model.addAttribute("blist",all);
         return "redirect:/list";
 
     }
 
-
+    //저장하는 기능
 
 
 }

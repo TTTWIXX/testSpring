@@ -10,6 +10,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import static java.util.Comparator.comparing;
+import static java.util.stream.Collectors.*;
+
 @Repository
 public class BoardRepository implements BoardMapper {
 
@@ -47,6 +51,8 @@ public class BoardRepository implements BoardMapper {
 
     @Override
     public List<Board> findAll() {
-        return mapList.values().stream().sorted(Comparator.comparing(Board::getBoardNo)).collect(Collectors.toList());
+        return mapList.values().stream()
+                .sorted(comparing(Board::getBoardNo))
+                .collect(toList());
     }
 }

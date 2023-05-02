@@ -1,11 +1,14 @@
 package com.example.testtest.practice01.dto;
 
 import com.example.testtest.practice01.entity.Board;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
+@ToString
+@Getter
 public class BoardListRequestDTO {
     private int boardNo; //게시글 번호
     private String shortTitle; // 제목
