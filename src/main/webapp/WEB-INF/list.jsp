@@ -81,7 +81,7 @@
                         </div>
                     </section>
                     <div class="card-btn-group">
-                        <button class="del-btn" data-href="/board/delete?bno=${b.boardNo}">
+                        <button class="del-btn" data-href="/test/delete?bno=${b.boardNo}">
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
@@ -179,7 +179,7 @@
                 // section태그에 붙은 글번호 읽기
                 const bno = e.target.closest('section.card').dataset.bno;
                 // 상세 조회 요청 보내기
-                window.location.href= '/board/detail?bno=' + bno + '&pageNo=${s.pageNo}&type=${s.type}&keyword=${s.keyword}';
+                window.location.href= '/test/detail?bno=' + bno;
             }
         });
 

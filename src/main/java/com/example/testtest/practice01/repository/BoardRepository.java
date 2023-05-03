@@ -1,21 +1,19 @@
 package com.example.testtest.practice01.repository;
 
-import com.example.testtest.practice01.dto.BoardListRequestDTO;
+import com.example.testtest.practice01.dto.BoardDetailResponseDTO;
 import com.example.testtest.practice01.entity.Board;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.*;
 
-@Repository
-public class BoardRepository implements BoardMapper {
+
+public class BoardRepository  {
 
     private static final Map<Integer, Board> mapList;
     static int sequence;
@@ -33,26 +31,35 @@ public class BoardRepository implements BoardMapper {
     }
 
 
-    @Override
-    public Board save(Board board) {
 
+    public Board save(Board board) {
+        board.setBoardNo(++sequence);
+        mapList.put(board.getBoardNo(),board);
+        System.out.println(mapList);
         return mapList.put(board.getBoardNo(),board);
     }
 
-    @Override
-    public boolean delete() {
-        return false;
+
+    public boolean delete(int bno) {
+        mapList.remove(bno);
+        return true;
     }
 
-    @Override
+
     public boolean modify() {
         return false;
     }
 
-    @Override
+
     public List<Board> findAll() {
         return mapList.values().stream()
                 .sorted(comparing(Board::getBoardNo))
                 .collect(toList());
+    }
+
+
+    public BoardDetailResponseDTO findOne(int bno) {
+        Board board = mapList.get(bno);
+        return new BoardDetailResponseDTO(board);
     }
 }

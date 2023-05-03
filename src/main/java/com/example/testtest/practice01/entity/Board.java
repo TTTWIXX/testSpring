@@ -1,6 +1,6 @@
 package com.example.testtest.practice01.entity;
 
-import com.example.testtest.practice01.dto.BoardWriteRequestDTO;
+import com.example.testtest.practice01.dto.boardWriteRequestDTO;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Board {
     private int boardNo; //게시글 번호
     private String title; // 제목
@@ -17,9 +18,10 @@ public class Board {
     private LocalDateTime regDatetime; //작성일자
 
 
-    public Board(BoardWriteRequestDTO dto) {
+    public Board(boardWriteRequestDTO dto) {
         this.title = dto.getTitle();
         this.content = dto.getContent();
+        this.regDatetime=LocalDateTime.now();
     }
 
 
