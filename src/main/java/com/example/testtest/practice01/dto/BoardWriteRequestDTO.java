@@ -7,7 +7,7 @@ import lombok.ToString;
 @Getter
 @ToString
 @Setter
-public class boardWriteRequestDTO {
+public class BoardWriteRequestDTO {
 
     private String title;
     private String content;

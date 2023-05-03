@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,10 +21,8 @@
 
     <link rel="stylesheet" href="/assets/css/main.css">
 
-    
+
     <style>
-        
-        
         .form-container {
             width: 500px;
             margin: auto;
@@ -33,6 +32,7 @@
             border-radius: 4px;
             font-size: 18px;
         }
+
         .form-container h1 {
             font-size: 40px;
             font-weight: 700;
@@ -41,18 +41,21 @@
             margin-bottom: 20px;
             color: #ffffff;
         }
+
         .form-container h2 {
             font-size: 30px;
             color: #222;
             text-align: center;
             margin-bottom: 20px;
         }
+
         label {
             display: block;
             margin-bottom: 5px;
             font-size: 20px;
         }
-        #title{
+
+        #title {
             font-size: 18px;
             width: 100%;
             padding: 8px;
@@ -62,6 +65,7 @@
             margin-bottom: 10px;
             background-color: rgba(255, 255, 255, 0.8);
         }
+
         #content {
             height: 400px;
             font-size: 18px;
@@ -78,11 +82,13 @@
             resize: none;
             height: 200px;
         }
+
         .buttons {
             display: flex;
             justify-content: flex-end;
             margin-top: 20px;
         }
+
         button {
             font-size: 20px;
             padding: 10px 20px;
@@ -95,29 +101,48 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             transition: background-color 0.3s;
         }
+
         button.list-btn {
             background: #e61e8c;
         }
+
         button:hover {
             background-color: #3d8b40;
         }
+
         button.list-btn:hover {
             background: #e61e8c93;
         }
+
+        #update {
+            text-decoration: none;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 20px;
+            text-align: center;
+            border-radius: 4px;
+            padding: 15px 20px;
+            margin-right: 5px;
+        }
     </style>
 </head>
+
 <body>
     <div id="wrap" class="form-container">
-        <h1>${b.boardNo}번 게시물 내용~ </h1>
-        <h2># 작성일자: ${b.date}</h2>
-        <label for="title">제목</label>
-        <input type="text" id="title" name="title" value="${b.title}" readonly>
-        <label for="content">내용</label>
-        <div id="content">${b.content}</div>
-        <div class="buttons">
-            <button class="list-btn" type="button">목록</button>
-        </div>
-        
+        <form action="/test/update" method="post">
+            <input type="hidden" name="boardNo" value="${b.boardNo}">
+            <h1>${b.boardNo}번 게시물 내용~ </h1>
+            <h2># 작성일자: ${b.date}</h2>
+            <label for="title">제목</label>
+            <input type="text" id="title" name="title" value="${b.title}">
+            <label for="content">내용</label>
+            <input id="content" name="content" value="${b.content}">
+            <div class="buttons">
+                <button type="submit" id="update">수정</button>
+                <button class="list-btn" type="button">목록</button>
+            </div>
+        </form>
     </div>
 </body>
+
 </html>

@@ -18,13 +18,15 @@
     </select>
 
     <insert id="save">
-        INSERT INTO tbl_board (title,content) VALUES (#{title},#{content})
+        INSERT INTO tbl_board
+        (title, content)
+        VALUES (#{title}, #{content})
     </insert>
 
     <update id="modify">
         UPDATE tbl_board
         SET title=#{title}, content=#{content}
-        WHERE board_no=#{bno}
+        WHERE board_no=#{boardNo}
     </update>
 
 

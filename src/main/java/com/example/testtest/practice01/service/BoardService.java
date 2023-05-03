@@ -2,10 +2,10 @@ package com.example.testtest.practice01.service;
 
 import com.example.testtest.practice01.dto.BoardDetailResponseDTO;
 import com.example.testtest.practice01.dto.BoardListResponseDTO;
-import com.example.testtest.practice01.dto.boardWriteRequestDTO;
+import com.example.testtest.practice01.dto.BoardUpdateRequestDTO;
+import com.example.testtest.practice01.dto.BoardWriteRequestDTO;
 import com.example.testtest.practice01.entity.Board;
 import com.example.testtest.practice01.repository.BoardMapper;
-import com.example.testtest.practice01.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public class BoardService {
         return boardRepository.findAll().stream().map(BoardListResponseDTO::new).collect(Collectors.toList());
     }
 
-    public void save(boardWriteRequestDTO dto) {
+    public void save(BoardWriteRequestDTO dto) {
         boardRepository.save(new Board(dto));
     }
 
@@ -33,5 +33,9 @@ public class BoardService {
     public BoardDetailResponseDTO findOne(int bno) {
         Board one = boardRepository.findOne(bno);
         return new BoardDetailResponseDTO(one);
+    }
+
+    public boolean modify(BoardUpdateRequestDTO dto) {
+        return boardRepository.modify(new Board(dto));
     }
 }
