@@ -1,6 +1,7 @@
 package com.example.testtest.practice01.entity;
 
-import com.example.testtest.practice01.dto.boardWriteRequestDTO;
+import com.example.testtest.practice01.dto.BoardUpdateRequestDTO;
+import com.example.testtest.practice01.dto.BoardWriteRequestDTO;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -18,10 +19,16 @@ public class Board {
     private LocalDateTime regDatetime; //작성일자
 
 
-    public Board(boardWriteRequestDTO dto) {
+    public Board(BoardWriteRequestDTO dto) {
         this.title = dto.getTitle();
         this.content = dto.getContent();
         this.regDatetime=LocalDateTime.now();
+    }
+    public Board(BoardUpdateRequestDTO dto){
+        this.boardNo=dto.getBoardNo();
+        this.title = dto.getTitle();
+        this.content = dto.getContent();
+
     }
 
 
