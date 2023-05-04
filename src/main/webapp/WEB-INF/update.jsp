@@ -122,9 +122,9 @@
             <h1>내용 수정 하기 </h1>
             <input type="hidden" name="boardNo" value="${c.boardNo}">
             <label for="title">제목</label>
-         <input type="text" id="title" name="title" value="${c.title}">
+            <input type="text" id="title" name="title" value="${c.title}">
             <label for="content">내용</label>
-        <input type="text" id="content" name="content" value="${c.content}">
+            <input type="text" id="content" name="content" value="${c.content}">
             <div class="buttons">
                 <button class="list-btn" type="button">목록</button>
                 <button type="submit">수정완료</button>
@@ -132,10 +132,16 @@
 
         </div>
     </form>
-<script>
+    <script>
+            const title=document.getElementById('title');
+    
+            const content=document.getElementById('content');
+
+        console.log(title);
+        console.log(content);
 
 
-</script>
+    </script>
 
 </body>
 

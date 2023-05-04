@@ -29,6 +29,12 @@
         WHERE board_no=#{boardNo}
     </update>
 
+    <update id="viewCount">
+        UPDATE tbl_board
+        SET view_count=view_count+1
+        WHERE board_no=#{boardNo}
+    </update>
+
 
 
 

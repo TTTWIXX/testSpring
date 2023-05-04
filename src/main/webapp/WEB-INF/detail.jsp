@@ -134,15 +134,22 @@
             <h1>${b.boardNo}번 게시물 내용~ </h1>
             <h2># 작성일자: ${b.date}</h2>
             <label for="title">제목</label>
-            <input type="text" id="title" name="title" value="${b.title}">
+            <input type="text" id="title" name="title" value="${b.title}" readonly>
             <label for="content">내용</label>
-            <input id="content" name="content" value="${b.content}">
+            <input id="content" name="content" value="${b.content}" readonly>
             <div class="buttons">
                 <button type="submit" id="update">수정</button>
                 <button class="list-btn" type="button">목록</button>
             </div>
         </form>
     </div>
+    <script>
+        const $listbtn = document.querySelector('.list-btn')
+        $listbtn.onclick=function(){
+            window.location.href='/test/list'
+        }
+    </script>
+
 </body>
 
 </html>

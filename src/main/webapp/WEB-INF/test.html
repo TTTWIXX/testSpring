@@ -116,14 +116,14 @@
 </head>
 
 <body>
-    <form action="/test/update" method="post">
+    <form action="/test/modify" method="post">
         <div id="wrap" class="form-container">
             <h1>내용 수정 하기 </h1>
-            <input type="hidden" name="boardNo" value="${b.boardNo}">${b.boardNo}
+            <input type="hidden" name="boardNo" value="${c.boardNo}">
             <label for="title">제목</label>
-            ${b.title}ㄱㄱㄱ<input type="text" id="title" name="title" value="1234">
+            <input type="text" id="title" name="title" value="${c.title}">
             <label for="content">내용</label>
-            ${b.content}<input type="text" id="content" name="content" >
+            <input type="text" id="content" name="content" value="${c.content}">
             <div class="buttons">
                 <button class="list-btn" type="button">목록</button>
                 <button type="submit">수정완료</button>
@@ -131,6 +131,17 @@
 
         </div>
     </form>
+    <script>
+            const title=document.getElementById('title').value;
+    
+            const content=document.getElementById('content').value;
+
+        console.log(title);
+        console.log(content);
+
+
+    </script>
+
 </body>
 
 </html>

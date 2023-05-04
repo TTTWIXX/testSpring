@@ -20,6 +20,7 @@ public class BoardListResponseDTO {
         this.boardNo = board.getBoardNo();
         this.shortTitle = shortTitle(board.getTitle());
         this.shortContent = shortContent(board.getContent());
+        this.viewCount=board.getViewCount();
         this.date = getTime(board.getRegDatetime());
     }
 

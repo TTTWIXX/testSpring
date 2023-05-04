@@ -23,4 +23,5 @@ public interface BoardMapper {
     Board findOne(int bno);
 
 
+    void viewCount(int boardNo);
 }

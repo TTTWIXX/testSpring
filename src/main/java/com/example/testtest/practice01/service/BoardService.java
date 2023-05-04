@@ -32,6 +32,8 @@ public class BoardService {
 
     public BoardDetailResponseDTO findOne(int bno) {
         Board one = boardRepository.findOne(bno);
+        boardRepository.viewCount(bno);
+
         return new BoardDetailResponseDTO(one);
     }
 

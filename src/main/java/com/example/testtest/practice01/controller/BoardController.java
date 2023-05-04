@@ -27,6 +27,8 @@ public class BoardController {
     public String showList(Model model) {
 
         List<BoardListResponseDTO> list = boardService.findAll();
+
+
         model.addAttribute("bList", list);
         return "/list";
     }
