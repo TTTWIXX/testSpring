@@ -4,10 +4,13 @@ import com.example.testtest.practice01.dto.BoardDetailResponseDTO;
 import com.example.testtest.practice01.dto.BoardListResponseDTO;
 import com.example.testtest.practice01.dto.BoardUpdateRequestDTO;
 import com.example.testtest.practice01.dto.BoardWriteRequestDTO;
+import com.example.testtest.practice01.dto.page.Page;
+import com.example.testtest.practice01.dto.page.PageMaker;
 import com.example.testtest.practice01.entity.Board;
 import com.example.testtest.practice01.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
-@org.springframework.stereotype.Controller
+@Controller
 @RequiredArgsConstructor
 @RequestMapping("/test")
 @Slf4j
@@ -24,12 +27,12 @@ public class BoardController {
 
     // 전체 목록 조회
     @GetMapping("/list")
-    public String showList(Model model) {
+    public String showList(Model model, Page page) {
 
         List<BoardListResponseDTO> list = boardService.findAll();
-
-
+        PageMaker P=new PageMaker(page,);
         model.addAttribute("bList", list);
+        model.addAttribute("p",pageMaker);
         return "/list";
     }
 

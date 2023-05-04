@@ -1,12 +1,86 @@
 package com.example.testtest.practice01.dto.page;
 
+import lombok.Getter;
+import lombok.ToString;
+
+@Getter
+@ToString
 public class PageMaker {
 
-    private int begin,end,finalPage; // 화면 렌더링시 페이지의 시작값과 끝값
-    private int prev,next; //이전, 다음 버튼
-    private static final int PAGE_COUNT=5; // 한번에 보여줄 페이지 수(몇 페이지씩 보여줄 것인가.)
-    private Page page; // 현재 요청 페이지 정보
-    private int totalCount; //총 게시물 수
+    // 한번에 그려낼 페이지 목록의 수
+    // 1 ~ 5, 6 ~ 10
+    // 1 ~ 10, 11 ~ 20
+    private static final int PAGE_COUNT = 5;
+
+    // 화면 렌더링시 페이지의 시작값과 끝값
+    private int begin, end, finalPage;
+
+    // 이전, 다음 버튼 활성화 여부
+    private boolean prev, next;
+
+    // 현재 요청 페이지 정보
+    private Page page;
+
+    // 총 게시물 수
+    private int totalCount;
+
+
+
+    // 페이지 계산 알고리즘
+    private void makePageInfo() {
+
+//        //end 값 계산
+//        this.end=(int)Math.ceil((double)page.getPageNo() /PAGE_COUNT)*PAGE_COUNT;
+//
+//        //begin 값 계산
+//        this.begin=end-PAGE_COUNT+1;
+//
+//        //finalPage 값 계산
+//        this.finalPage=(int)Math.ceil((double) totalCount /page.getAmount());
+//
+//        if(end>finalPage)
+//            this.end=this.finalPage;
+//        this.prev=begin>1;
+//
+
+
+        // 1. end값 계산
+        // 올림처리 (현재 위치한 페이지번호 / 한 화면에 배치할 페이지수 ) *  한 화면에 배치할 페이지 수
+        this.end = (int) Math.ceil(page.getPageNo() / (double)PAGE_COUNT) * PAGE_COUNT;
+
+
+        // 2. begin값 계산
+        this.begin = this.end - PAGE_COUNT + 1;
+
+        /*
+        - 총 게시물수가 237개고, 한 화면당 10개의 게시물을 배치하고 있다면
+          페이지 구간은
+
+          1 ~ 10페이지 구간 : 게시물 100개
+          11 ~ 20페이지 구간: 게시물 100개
+          21 ~ 24페이지 구간: 게시물 37개
+
+        - 마지막 페이지 구간에서는 보정이 필요함.
+
+        - 마지막 구간 끝페이지 보정 공식:
+          올림처리(총 게시물 수 / 한 페이지당 배치할 게시물 수)
+
+         */
+
+        this.finalPage = (int) Math.ceil((double)totalCount / page.getAmount());
+
+        // 마지막 페이지 구간에서만 엔드보정이 일어나야 함
+        if (this.finalPage < this.end) this.end = this.finalPage;
+
+        // 이전 버튼 활성화 여부
+        this.prev = begin > 1;
+
+        // 다음 버튼 활성화 여부
+        this.next = end < this.finalPage;
+
+    }
+
+
 
 
 }

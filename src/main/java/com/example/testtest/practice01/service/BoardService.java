@@ -7,11 +7,12 @@ import com.example.testtest.practice01.dto.BoardWriteRequestDTO;
 import com.example.testtest.practice01.entity.Board;
 import com.example.testtest.practice01.repository.BoardMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@org.springframework.stereotype.Service
+@Service
 @RequiredArgsConstructor
 public class BoardService {
     private final BoardMapper boardRepository;
